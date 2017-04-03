@@ -1,5 +1,5 @@
 {
-  "manifest_version": 0.0,
+  "manifest_version": 2,
   "name": "Personal Scheduler",
   "description": "This extension acts as a personal scheduler for a user",
   "version": "0.0",
