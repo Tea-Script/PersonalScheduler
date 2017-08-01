@@ -17,7 +17,8 @@
 
   "permissions": [
     "activeTab",
-    "tabs"
+    "tabs",
+    "http://ciaracoding.16mb.com/*"
   ],
   "icons": {
             "512": "schedulericon.png" }
