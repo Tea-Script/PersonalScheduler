@@ -1,27 +1,30 @@
 var evt_total;
+var user_id = 7114113888111;
 function sched_send(evt){ //posts message requests to server
     //console.log("sending message to server");
-    $.post('http://ciaracoding.16mb.com/Scheduler/scheduler.php',{send: evt}, function(evt){
+    $.post('http://ciaracoding.16mb.com/Scheduler/scheduler.php',{id: user_id, send: evt}, function(evt){
           //console.log(evt);
           update();
+          $("textarea").val("");
+          $("#Event").focus();
     });
 
 }
 function sched_rm(evt){ //posts message requests to server
     //console.log("sending message to server");
-    $.post('http://ciaracoding.16mb.com/Scheduler/scheduler.php',{rm: evt}, function(evt){
+    $.post('http://ciaracoding.16mb.com/Scheduler/scheduler.php',{id: user_id, rm: evt}, function(evt){
           //console.log(evt);
           update();
     });
 }
 function getNumEvents(){
-  $.post('http://ciaracoding.16mb.com/Scheduler/scheduler.php', {req: "reset"}, function(num){
+  $.post('http://ciaracoding.16mb.com/Scheduler/scheduler.php', {id: user_id, req: "reset"}, function(num){
     evt_total = num;
   });
 
 }
 function update(){ //requests new messages from server (automatically every 10s)
-    $.get('http://ciaracoding.16mb.com/Scheduler/scheduler.php', {req: "all"}, function(evts){
+    $.get('http://ciaracoding.16mb.com/Scheduler/scheduler.php', {id: user_id, req: "all"}, function(evts){
       if(evts){
         //console.log(evt_total);
         evt_total = 0;
@@ -48,27 +51,25 @@ function main(){
   form.action = "#";
   $("#Date").keypress(function (e) {
       //TODO: Validate that all entered dates are valid dates
-      if(e.which == 13) {
-        //console.log("space");
-      }
       if(e.which == 13 && !e.shiftKey && $("#Event").val() !== '') {
           var txt = $("#Event").val() + " on " + $(this).val();
           e.preventDefault();
           sched_send(txt);
-          //form.submit();
-          //return false;
+
+      }
+      else if(e.which == 13 && !e.shiftKey){
+          $("#Event").focus();
       }
   });
   $("#Event").keypress(function (e) {
-      if(e.keyCode == 13) {
-        //console.log("space");
-      }
       if(e.which == 13 && !e.shiftKey && $("#Date").val() !== '') {
           var txt = $(this).val() + " on " + $("#Date").val();
           e.preventDefault();
           sched_send(txt);
-          //form.submit();
-          //return false;
+
+      }
+      else if(e.which == 13 && !e.shiftKey){
+          $("#Date").focus();
       }
   });
   $(document).on("click", "li", function(){
