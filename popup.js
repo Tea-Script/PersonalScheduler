@@ -31,11 +31,11 @@ function update(){ //requests new messages from server (automatically every 10s)
         //console.log(evt_total);
         evt_total = 0;
         evts = evts.split('\t');
-        console.log(evts);
+        //console.log(evts);
         $(".events").html('');
         for(var i = 0; i < evts.length; i++){
           var evt = evts[i];
-          $('<li>').text(evt).prependTo('.events');
+          $('<li><p>' + evt + '</p><a class="delete" href="#">Remove</a></li>').prependTo('.events');
           evt_total++;
         }
       }
@@ -99,11 +99,11 @@ function main(){
         console.error(err);
       }
   });
-  $(document).on("click", "li", function(){
-      let entry = $(this).text();
+  $(document).on("click", "a", function(){
+      let entry = $(this).prev().text();
       sched_rm(entry);
-      $(this).remove();
-      console.log(entry + " Deleted");
+      $(this).parent().remove();
+      //console.log(entry + " Deleted");
       //Send message that task is completed
 
 

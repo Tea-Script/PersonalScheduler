@@ -22,9 +22,14 @@ body {
 }
 #Date{
   float:right;
-
-
 }
+.delete{
+  text-align: right;
+  font-size: 14px;
+  color: blue;
+}
+
+
 .events {
   clear: both;
   list-style: none;

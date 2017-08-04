@@ -2,16 +2,17 @@
   "manifest_version": 2,
   "name": "Personal Scheduler",
   "description": "This extension acts as a personal scheduler for a user",
-  "version": "0.0",
-  "content_security_policy": "script-src 'self'; object-src 'self'; media-src https://www.soundjay.com/button/beep-07.wav ",
+  "manifest_version": 2,
+  "version": "1.0",
+  "content_security_policy": "script-src 'self'; object-src 'self'; media-src http://www.waveevents.com/MyFilez/wavs/variety/bkwrdwok.wav ",
 
-  "background": [
+  "background":
     {
     "matches": ["<all_urls>", "http://ciaracoding.16mb.com/*"],
-    "scripts": ["jquery-3.2.0.min.js" , "background.js"],
-    "page" : "background.html"
+    "page" : "background.html",
+    "persistent": true
     }
-  ],
+  ,
 
   "browser_action": {
     "default_popup": "popup.html"
