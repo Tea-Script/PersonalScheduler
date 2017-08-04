@@ -3,11 +3,13 @@
   "name": "Personal Scheduler",
   "description": "This extension acts as a personal scheduler for a user",
   "version": "0.0",
+  "content_security_policy": "script-src 'self'; object-src 'self'; media-src https://www.soundjay.com/button/beep-07.wav ",
 
-  "content_scripts": [
+  "background": [
     {
-    "matches": ["<all_urls>"],
-    "js": ["scheduler.js"]
+    "matches": ["<all_urls>", "http://ciaracoding.16mb.com/*"],
+    "scripts": ["jquery-3.2.0.min.js" , "background.js"],
+    "page" : "background.html"
     }
   ],
 
@@ -18,8 +20,10 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "http://ciaracoding.16mb.com/*"
+    "http://ciaracoding.16mb.com/*",
+    "<all_urls>"
+
   ],
   "icons": {
-            "512": "schedulericon.png" }
+    "512": "schedulericon.png" }
 }
