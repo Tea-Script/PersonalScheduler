@@ -36,18 +36,26 @@ function reminder(){
     let date = new Date(dates[i][1]);
     diff = date - now;
     //console.log(diff)
+    let s = dates[i][0] + ": " + dates[i][1];
     if(diff < 0){
-      let s = dates[i][0] + ": " + dates[i][1];
-      alert(s + " is due");
       sched_rm(s);
+
     }
     else if(/*diff < 60000 && diff > 59500 ||*/ diff < 500 ){
       playSound();
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        chrome.tabs.sendMessage(tabs[0].id, {actn: "notify", evt: "s"},
+          response => {
+            ;
+          }
+        );
+      });
+      //alert(s + " is due");
     }
   }
 }
 function main(){
-    setInterval(update, 500);
-    setInterval(reminder, 200);
+    setInterval(update, 250);
+    setInterval(reminder, 300);
 }
 $(document).ready(main);

@@ -1,30 +1,25 @@
 {
-  "manifest_version": 2,
-  "name": "Personal Scheduler",
-  "description": "This extension acts as a personal scheduler for a user",
-  "manifest_version": 2,
-  "version": "1.0",
-  "content_security_policy": "script-src 'self'; object-src 'self'; media-src http://www.waveevents.com/MyFilez/wavs/variety/bkwrdwok.wav ",
-
-  "background":
-    {
-    "matches": ["<all_urls>", "http://ciaracoding.16mb.com/*"],
-    "page" : "background.html",
-    "persistent": true
-    }
-  ,
-
-  "browser_action": {
-    "default_popup": "popup.html"
-  },
-
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "http://ciaracoding.16mb.com/*",
-    "<all_urls>"
-
-  ],
-  "icons": {
-    "512": "schedulericon.png" }
+   "background": {
+      "matches": [ "\u003Call_urls>", "http://ciaracoding.16mb.com/*" ],
+      "page": "background.html",
+      "persistent": true
+   },
+   "browser_action": {
+      "default_popup": "popup.html"
+   },
+   "content_scripts": [ {
+      "css": [ "jquery-ui.css" ],
+      "js": [ "notify.js", "jquery-ui.js", "jquery-3.2.0.min.js" ],
+      "matches": [ "http://ciaracoding.16mb.com/*" ]
+   } ],
+   "content_security_policy": "script-src 'self'; object-src 'self'; media-src http://www.waveevents.com/MyFilez/wavs/variety/bkwrdwok.wav ",
+   "description": "This extension acts as a personal scheduler for a user",
+   "icons": {
+      "512": "schedulericon.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyWCyfRXTgkv1q1VdmMyi4PSkJU0xhTOSlTvrACmTlCXWFI8yAyFqwAcarriceJfFSPUuuuHy+hfAVVZDEVtZRmr1rtpypxt6XIHCN3X+AW72HQsCoK8YdDEQYyyGT22kEphYjirWv75UIcKv+t+oosMX91qZax/Ii+Tf6NJngkm+ptMTMHkD0yLVwDpE8o1Ead6b1xnt3eC8DY1Q65ntko0cF6mGa8l3z/y808mF7dKJWoI/QHKlVZheo6AQtL5J1qUVxBJ4wEwG+wohKMQcMypvURYTp7b4MnPE9xFpz6+ZTmstU0COsEDi37ecDIvkIR9YxwlKzQe5xPQgKAbzdQIDAQAB",
+   "manifest_version": 2,
+   "name": "Personal Scheduler",
+   "permissions": [ "activeTab", "tabs", "http://ciaracoding.16mb.com/*", "\u003Call_urls>", "identity" ],
+   "version": "1.0"
 }
